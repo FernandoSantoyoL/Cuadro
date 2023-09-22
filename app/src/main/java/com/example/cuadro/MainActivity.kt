@@ -52,6 +52,8 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+// El composible TopicGrid lo usamos para mostrar una cuadícula
+// de temas utilizando LazyVerticalGrid
 @Composable
 fun TopicGrid(modifier: Modifier = Modifier) {
     LazyVerticalGrid(
@@ -59,6 +61,8 @@ fun TopicGrid(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.santoyo)),
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.santoyo)),
         modifier = modifier
+        //Para cada tema en la lista de temas proporcionada
+        // por DataSource, se muestra una tarjeta de tema.
     ) {
         items(DataSource.topics) { topic ->
             TopicCard(topic)
@@ -71,6 +75,8 @@ fun TopicCard(topic: Topic, modifier: Modifier = Modifier) {
     Card {
         Row {
             Box {
+                //Mostramos la imagen del tema con un tamaño específico
+                // y una relación de aspecto 1:1
                 Image(
                     painter = painterResource(id = topic.imageRes),
                     contentDescription = null,
@@ -90,6 +96,8 @@ fun TopicCard(topic: Topic, modifier: Modifier = Modifier) {
                     )
                 )
                 Row(verticalAlignment = Alignment.CenterVertically) {
+                    // Mostramos un icono y la cantidad de
+                    // cursos disponibles para el tema.
                     Icon(
                         painter = painterResource(R.drawable.ic_grain),
                         contentDescription = null,
@@ -107,6 +115,9 @@ fun TopicCard(topic: Topic, modifier: Modifier = Modifier) {
     }
 }
 
+// Se utiliza el composable TopicPreview
+// para la vista previa en el diseñador de Jetpack Compose.
+
 @Preview(showBackground = true)
 @Composable
 fun TopicPreview() {
@@ -117,6 +128,7 @@ fun TopicPreview() {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            // Aquí mostramos una tarjeta de tema en la vista previa.
             TopicCard(topic = topic)
         }
     }
